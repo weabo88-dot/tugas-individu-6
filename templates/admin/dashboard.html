@@ -1,0 +1,41 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Dashboard Admin{% endblock %}
+{% block judul %}Dashboard{% endblock %}
+
+{% block admin_content %}
+<div class="row g-3 mb-4">
+    {% for s in statistik %}
+    <div class="col-6 col-lg-3">
+        <div class="card text-bg-{{ s.warna }} stat-card h-100">
+            <div class="card-body">
+                <div class="fs-3">{{ s.ikon }}</div>
+                <h3 class="mb-0">{{ s.nilai }}</h3>
+                <p class="mb-0">{{ s.label }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="card p-3">
+    <h3 class="fs-5 mb-3">Data Mata Kuliah Terbaru</h3>
+    <div class="table-responsive">
+        <table class="table table-dark table-hover align-middle mb-0">
+            <thead class="table-dark-custom">
+                <tr><th>#</th><th>Mata Kuliah</th><th>SKS</th><th>Nilai</th></tr>
+            </thead>
+            <tbody>
+                {% for m in terbaru %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ m.matkul }}</td>
+                    <td>{{ m.sks }}</td>
+                    <td><span class="badge text-bg-{{ m.badge }}">{{ m.nilai }}</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{{ url_for('admin_matkul') }}" class="btn btn-outline-light btn-sm mt-3 align-self-start">Lihat semua →</a>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Beranda{% endblock %}
+
+{% block content %}
+<div class="card mb-4">
+    <div class="card-body">
+        <h2 class="card-title text-center mb-4">BIODATA</h2>
+        <hr style="border-color: #555;">
+        <p class="fs-5"><strong>Nama Lengkap :</strong> {{ bio.nama }}</p>
+        <p class="fs-5"><strong>NBI :</strong> {{ bio.nbi }}</p>
+        <p class="fs-5"><strong>Program Studi :</strong> {{ bio.prodi }}</p>
+
+        <div class="text-center mt-4">
+            <button type="button" class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#gothicModal">
+                ⸸ Buka Pesan Rahasia ⸸
+            </button>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline-secondary btn-sm">Masuk Dashboard</a>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mb-4">
+    <p class="gothic-quote">"Emperor watch"</p>
+</div>
+
+<div class="modal fade" id="gothicModal" tabindex="-1" aria-labelledby="gothicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-secondary">
+            <div class="modal-header border-bottom border-secondary">
+                <h1 class="modal-title fs-5" id="gothicModalLabel">System Notice</h1>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center py-4">
+                <p class="m-0">"Jawa adalah koentji."</p>
+                <small class="text-muted">{{ bio.nama }} - {{ bio.nbi }}</small>
+            </div>
+            <div class="modal-footer border-top border-secondary">
+                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

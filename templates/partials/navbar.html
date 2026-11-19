@@ -1,0 +1,30 @@
+{% set menu = [("index", "Beranda"),
+               ("nilai", "Nilai & IPK"),
+               ("admin_dashboard", "Dashboard Admin")] %}
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('index') }}">⸸ Website Data Diri ⸸</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#menuUtama" aria-controls="menuUtama" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menuUtama">
+            <ul class="navbar-nav me-auto">
+                {% for endpoint, label in menu %}
+                <li class="nav-item">
+                    <a class="nav-link {{ 'active' if request.endpoint == endpoint or (endpoint == 'admin_dashboard' and request.endpoint.startswith('admin')) }}"
+                       href="{{ url_for(endpoint) }}">{{ label }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <audio id="bg-audio" loop>
+                <source src="{{ url_for('static', filename='audio/black-parade.mp3') }}" type="audio/mpeg">
+            </audio>
+            <button id="btnAudio" class="btn btn-sm btn-outline-secondary text-light" style="font-size: 11px;">♫ click to play</button>
+        </div>
+    </div>
+</nav>

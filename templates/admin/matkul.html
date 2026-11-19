@@ -1,0 +1,28 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Data Mata Kuliah{% endblock %}
+{% block judul %}Data Mata Kuliah{% endblock %}
+
+{% block admin_content %}
+<div class="card p-3">
+    <div class="table-responsive">
+        <table class="table table-dark table-hover align-middle mb-0">
+            <thead class="table-dark-custom">
+                <tr><th>#</th><th>Kode</th><th>Mata Kuliah</th><th>SKS</th><th>Nilai</th><th>N.K.</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+                {% for m in daftar %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ m.kode }}</td>
+                    <td>{{ m.matkul }}</td>
+                    <td>{{ m.sks }}</td>
+                    <td><span class="badge text-bg-{{ m.badge }}">{{ m.nilai }}</span></td>
+                    <td>{{ "%.2f"|format(m.nk) }}</td>
+                    <td>{{ "Lulus" if m.nk >= 2 * m.sks else "Perlu Perbaikan" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
